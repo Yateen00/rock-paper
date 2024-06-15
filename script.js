@@ -8,52 +8,45 @@ function getComputerChoice() {
     return "scissors";
   }
 }
-function getHumanChoice() {
-  let humanChoice = prompt("Enter your choice", "").toLowerCase();
-  return humanChoice;
-}
-let humanScore = 0,
-  computerScore = 0;
 function playRound(humanChoice, computerChoice) {
   if (humanChoice == "paper" && computerChoice == "rock") {
-    console.log("You won! " + humanChoice + " beats " + computerChoice);
     humanScore++;
   } else if (humanChoice == "scissors" && computerChoice == "paper") {
-    console.log("You won! " + humanChoice + " beats " + computerChoice);
     humanScore++;
   } else if (humanChoice == "rock" && computerChoice == "scissors") {
-    console.log("You won! " + humanChoice + " beats " + computerChoice);
     humanScore++;
   } else if (
-    (humanChoice == "rock" && computerChoice == "rock") ||
-    (humanChoice == "paper" && computerChoice == "paper") ||
-    (humanChoice == "scissors" && computerChoice == "scissors")
+    humanChoice == computerChoice ||
+    humanChoice == computerChoice ||
+    humanChoice == computerChoice
   ) {
-    console.log("It was a tie");
   } else {
-    console.log("You lose! " + computerChoice + " beats " + humanChoice);
     computerScore++;
   }
+  updateScore();
 }
 function playGame() {
-  alert("Game started!");
-  for (let i = 1; i <= 5; i++) {
-    console.log("Round " + i);
-    let humanChoice = getHumanChoice();
+  let choices = document.querySelector("#choices");
+  console.log(choices);
+  let reset = document.querySelector("#reset");
+  reset.addEventListener("click", restartGame);
+  choices.addEventListener("click", (e) => {
+    let humanChoice = e.target.id;
     let computerChoice = getComputerChoice();
     playRound(humanChoice, computerChoice);
-  }
-  console.log("Your Score: " + humanScore);
-  console.log("Computer Score: " + computerScore);
-  if (humanScore > computerScore) {
-    alert("You won the game");
-  } else if (computerScore > humanScore) {
-    alert("Computer won the game!");
-  } else {
-    alert("It's a tie");
-  }
+  });
 }
 function restartGame() {
   humanScore = 0;
   computerScore = 0;
+  updateScore();
 }
+function updateScore() {
+  let humanScoreElement = document.querySelector("#humanScore");
+  let computerScoreElement = document.querySelector("#computerScore");
+  humanScoreElement.textContent = humanScore;
+  computerScoreElement.textContent = computerScore;
+}
+let humanScore = 0,
+  computerScore = 0;
+playGame();

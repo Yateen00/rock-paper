@@ -5,11 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game</title>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-
+    <p>Choose an option</p>
+    <div id="choices">
+        <button id="rock">ROCK</button>
+        <button id="paper">PAPER</button>
+        <button id="scissors">SCISSORS</button>
+    </div>
+    <div id="result">
+        <p>RESULT</p>
+        <p>COMPUTER: <span id="computerScore">0</span>&emsp;&emsp;
+            USER: <span id="humanScore">0</span>
+        </p>
+    </div>
+    <div id="utility">
+        <button id="reset">RESET</button>
+    </div>
 </body>
 
 </html>
